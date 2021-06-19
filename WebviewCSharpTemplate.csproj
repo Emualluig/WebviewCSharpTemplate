@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="node --prefix &quot;html&quot; run build" />
+    <Exec Command="npm --prefix &quot;html&quot; run build" />
   </Target>
 
 </Project>
