@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+            All stylesheets/scripts/assets that have src get inlined
+            Put attribute data-inline-ignore for them to not get inlined
+            See below for example.
+        
+            Rule to follow: 
+                If an asset needs an internet connection do not inline
+                If the asset is a file to be included in the exe, you should inline
+        -->
+
+        <!-- 
+            Use javascript to interop with c#, use this for example.
+
+            Functions like cs_navigate() and cs_initalize() call interop functions
+            defined in interop.js
+            Open interop.js for more info
+        
+        -->
+        <script src="script/interop.js"></script>
+
+        <!-- interop.js sets the title of the window to the title of the page -->
+        <title>Index</title>
+
+        <!-- Load in twemoji, but do not inline (Will get from src) -->
+        <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous" data-inline-ignore></script>
+        
+        <!-- 
+            Load in bootstrap icons, but not inline
+            You might want to inline this by downloading the content and having a href to the file location
+            When things are inlined, they become base64 string inside the html itself, 
+            so file size can get large if inling is not properly managed 
+        -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" data-inline-ignore>
+
+        <meta charset="utf-8">
+
+        <!-- script and style tags works as normal -->
+        <style>
+            body {
+                margin: 0px;
+            }
+
+            .content-wrapper {
+                margin: 10px;
+                font-size: 2em;
+            }
+
+            .welcome-message img.emoji {
+                height: 1em;
+                width: 1em;
+            }
+            
+        </style>
+
+        <!-- This stylesheet will get inlined -->
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="content-wrapper">
+            <p class="welcome-message">The page has loaded! 🎉</p>
+            <p>Welcome to index</p>
+            <p>
+                <ul>
+                    <li>On this page you can navigate to tab1 or tab2.</li>
+                    <li>On tab1 there is an example of sending and receiving data from the interop.</li>
+                    <li>On tab2 there is an example of including images/svg/audio/video files.</li>
+                </ul>
+            </p>
+        </div>
+
+        <!-- Bottom bar for example of navigation between pages -->
+        <div class="tab-bar">
+            <div class="tab-item">
+                <span>
+                    <!-- The function cs_navigate() is defined in interop.js -->
+                    <i class="bi bi-chevron-double-left" onclick="cs_navigate('tab1')"></i>tab1
+                </span>
+            </div>
+            <div class="tab-item">
+                <span>
+                    <!-- The function cs_navigate() is defined in interop.js -->
+                    tab2<i class="bi bi-chevron-double-right" onclick="cs_navigate('tab2')"></i>
+                </span>
+            </div>
+        </div>
+        <script>
+            (function() {
+                twemoji.parse(document.body,{
+                    folder: 'svg',
+                    ext: '.svg'
+                });
+            })();
+        </script>
+    </body>
+</html>

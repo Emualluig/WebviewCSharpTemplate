@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- View index.html for more explanations -->
+        <script src="script/interop.js"></script>
+        <title>Tab2</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" data-inline-ignore>
+
+        <style>
+            body {
+                margin: 0px;
+            }
+
+            .content-wrapper {
+                margin: 10px;
+                font-size: 2em;
+            }
+            
+        </style>
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="content-wrapper">
+            <p class="welcome-message">The page has loaded!</p>
+            <p>Welcome to tab1</p>
+        </div>
+
+        <!-- Here is the example -->
+        <div class="example">
+
+        </div>
+
+
+        <div class="tab-bar">
+            <div class="tab-item">
+                <span>
+                    <i class="bi bi-chevron-double-left" onclick="cs_navigate('tab2')"></i>tab2
+                </span>
+            </div>
+            <div class="tab-item">
+                <span>
+                    index<i class="bi bi-chevron-double-right" onclick="cs_navigate('index')"></i>
+                </span>
+            </div>
+        </div>
+    </body>
+</html>

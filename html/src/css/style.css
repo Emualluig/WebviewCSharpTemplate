@@ -1,0 +1,29 @@
+.tab-bar {
+    bottom: 0;
+    position: fixed;
+    height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #333436;
+    box-sizing: content-box;
+    width: 100%;
+}
+
+.tab-item {
+    height: inherit;
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.tab-item span {
+    line-height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 50px; 
+    color: lightgray;
+}
+
+.tab-item span i.bi:hover {
+    cursor: pointer;
+}

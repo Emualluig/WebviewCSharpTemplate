@@ -1,0 +1,16 @@
+{
+  "name": "html",
+  "version": "1.0.0",
+  "description": "inlines and minifies webpages in src so that they can be used as a resource",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./build-scripts/inline-minify.js && node ./build-scripts/generateResources.js"
+  },
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "html-minifier": "^4.0.0",
+    "web-resource-inliner": "^5.0.0",
+    "xml2js": "^0.4.23"
+  }
+}
