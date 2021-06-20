@@ -17,6 +17,13 @@ Each time you compile your app, your html and its resources (js/css files) are i
 * Navigation between pages
 * Invoking C# functions from js
 
+## How to use
+
+Download the project
+
+navigate to html
+run npm install
+
 # Requirements
 
 * node.js
