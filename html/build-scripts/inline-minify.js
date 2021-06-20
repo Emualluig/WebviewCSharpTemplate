@@ -1,10 +1,17 @@
-﻿const fs = require("fs");
+﻿// This script consumes the .html files from ../src/ inlines and minifies them
+// then places them in ../dist/
+
+// Load in config file
+const config = require("./config").config;
+
+// Load in requires
+const fs = require("fs");
 const path = require("path");
 const inline = require("web-resource-inliner");
 const minify = require("html-minifier").minify;
 
-const inputDir = "./src/";
-const outputDir = "./dist/";
+const inputDir = config.htmlInputFolder;
+const outputDir = config.htmlOutputFolder;
 
 const htmlInlineOptions = {
     maxImageInlineSizeKB: 8
