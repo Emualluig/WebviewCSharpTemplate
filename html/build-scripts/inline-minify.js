@@ -26,15 +26,14 @@ fs.readdir(inputDir, { withFileTypes: true }, (err, result) => {
     if (err) {
         throw err;
     }
-
-    // Filter out folders
-    const noFolders = result.filter(dirent => dirent.isFile());
-
-    // Replace dirent object with file name
-    const files = noFolders.map(dirent => dirent.name);
-
-    // Get only .html files
-    const htmlFiles = files.filter(file => path.extname(file) === ".html");
+    
+    const htmlFiles = result
+                    // Filter out folders
+                    .filter(dirent => dirent.isFile())
+                    // Replace dirent objects with file name
+                    .map(dirent => dirent.name)
+                    // Get only html files
+                    .filter(file => path.extname(file) === ".html");
 
     // For each .html file, inline and minify
     htmlFiles.forEach(file => {

@@ -1,91 +1,59 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--
-            All stylesheets/scripts/assets that have src get inlined
-            Put attribute data-inline-ignore for them to not get inlined
-            See below for example.
-        
-            Rule to follow: 
-                If an asset needs an internet connection do not inline
-                If the asset is a file to be included in the exe, you should inline
-        -->
+        <!-- interop.js sets the title of the window to that of the page -->
+        <title>index</title>
 
-        <!-- interop.js sets the title of the window to the title of the page -->
-        <!-- Have title before interop.js -->
-        <title>Index</title>
-
-        <!-- 
-            Use javascript to interop with c#, use this for example.
-
-            Functions like cs_navigate() and cs_initalize() call interop functions
-            defined in interop.js
-            Open interop.js for more info
-        
-        -->
-        <script src="script/interop.js"></script>
-        
-        <!-- 
-            Load in bootstrap icons, but not inline
-            You might want to inline this by downloading the content and having a href to the file location
-            When things are inlined, they become base64 string inside the html itself, 
-            so file size can get large if inling is not properly managed.
-            Inling would make loading faster however...
-        -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" data-inline-ignore>
-
-        <meta charset="utf-8">
-
-        <!-- script and style tags works as normal -->
-        <style>
-            body {
-                margin: 0px;
-            }
-
-            .content-wrapper {
-                margin: 10px;
-                font-size: 2em;
-            }
-
-            .welcome-message img.emoji {
-                height: 1em;
-                width: 1em;
-            }
-            
-        </style>
-
-        <!-- This stylesheet will get inlined -->
+        <!-- All stylesheets get inlined except if they have the attribute data-inline-ignore -->
         <link rel="stylesheet" href="css/style.css">
+
+        <!-- All scripts get inlined except if they have the attribute data-inline-ignore -->
+        <!-- 
+            In this script you can see: 
+                cs_navigate that call a C# function to navigate between pages
+                cs_initialize that changes the title of the window to that of the page
+         -->
+        <script src="script/interop.js"></script>
+
+        
+        <script>
+            // This is an example of sending and receiving data from the C# backend
+            const updateContent = function(arg) {
+                console.log("up");
+
+                // cs_extern_send can consume any number of arguments
+                // the arguments become a string in C#
+                // then a promise is returned, where the reponse is a JSON object
+                cs_extern_send(arg).then((rep) => {
+                    document.getElementById("response").innerHTML = "args sent to c# was: " + rep.result;
+                    document.getElementById("response").style.backgroundColor = "lightgreen";
+                }).catch((err) => {
+                    document.getElementById("response").innerHTML = err.result;
+                    document.getElementById("response").style.backgroundColor = "lightcoral";
+                });
+            }
+        </script>
     </head>
     <body>
-        <div class="content-wrapper">
-            <p class="welcome-message" id="text">The page has loaded!</p>
-            <p>Welcome to index</p>
-            <p>
-                I hope you enjoy your stay
-            </p>
-            <p>
-                <ul>
-                    <li>On this page you can navigate to tab1 or tab2.</li>
-                    <li>On tab1 there is an example of sending and receiving data from the interop.</li>
-                    <li>On tab2 there is an example of including images/svg/audio/video files.</li>
-                </ul>
-            </p>
+        <div class="content">
+            <img class="success" src="https://abs.twimg.com/emoji/v2/svg/1f389.svg" data-inline-ignore>
+            <p>Page sucessfully loaded!</p>
+            <fieldset class="examples">
+                <legend>Interact with C# backend</legend>
+                <div class="button">
+                    <button onclick="updateContent(1)">Click here to update content</button>
+                </div>
+                <div class="result" id="response" style="background-color: lightcoral;">no content here yet</div>
+            </fieldset>
         </div>
-
-        <!-- Bottom bar for example of navigation between pages -->
         <div class="tab-bar">
-            <div class="tab-item">
-                <span>
-                    <!-- The function cs_navigate() is defined in interop.js -->
-                    <i class="bi bi-chevron-double-left" onclick="cs_navigate('tab1')"></i>tab1
-                </span>
+            <div class="tab active">
+
             </div>
-            <div class="tab-item">
-                <span>
-                    <!-- The function cs_navigate() is defined in interop.js -->
-                    tab2<i class="bi bi-chevron-double-right" onclick="cs_navigate('tab2')"></i>
-                </span>
+            <div class="tab inactive">
+                <div class="tab-content">
+                    <img class="open-page" src="assets/arrow-bar-up.svg" onclick="cs_navigate('view1')">
+                </div>
             </div>
         </div>
     </body>

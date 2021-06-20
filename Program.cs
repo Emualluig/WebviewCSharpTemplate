@@ -51,20 +51,21 @@ namespace WebviewCSharpTemplate
                     // args is a string such as ["arg1","arg2","arg3",...]
 
                     // Set up function binds
-                    // cs_extern_initialize(pageTitle) sets the title of the window to that of the page
+                    // cs_extern_initialize(f_args) sets the title of the window to that of the page
                     // effects: changes window title
                     // requires: only one argument
-                    .Bind("cs_extern_initialize", (id, args) => {
-                        string title = args.Trim(new char[] { '[', '\"', ']' });
+                    .Bind("cs_extern_initialize", (id, f_args) => {
+                        string title = f_args.Trim(new char[] { '[', '\"', ']' });
 
                         webview.SetTitle(title);
                     })
 
-                    // cs_extern_navigate(pageName) consumes a single argument, navigates to a page
+                    // cs_extern_navigate(f_args) consumes a single argument, navigates to a page specified in the argument
+                    // example: cs_extern_navigate('index') => navigates webview to index.html
                     // effects: changes view to another page
                     // requires: pageName is a valid page
-                    .Bind("cs_extern_navigate", (id, args) => {
-                        string navTarget = args.Trim(new char[] { '[', '\"', ']' });
+                    .Bind("cs_extern_navigate", (id, f_args) => {
+                        string navTarget = f_args.Trim(new char[] { '[', '\"', ']' });
 
                         Console.WriteLine("Navigating to => " + navTarget);
 
@@ -73,9 +74,13 @@ namespace WebviewCSharpTemplate
                         
                     })
 
+                    // cs_send(f_args) consumes an arg from js, then returns a promise, success is a JSON object with result being an echo of arg
+                    // effects: returns data into javascript
+                    .Bind("cs_extern_send", (id, f_args) => {
+                        Console.WriteLine("cs_send" + f_args);
 
-                    .Bind("cs_send", (id, args) => {
-                        webview.Return(id, RPCResult.Success, "{ result: 'Hello' }");
+
+                        webview.Return(id, RPCResult.Success, "{ result: " + f_args + " }");
                     })
 
                     // Go to index.html first
