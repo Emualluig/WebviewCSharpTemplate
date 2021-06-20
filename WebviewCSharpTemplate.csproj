@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -26,8 +26,12 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <PropertyGroup>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+  </PropertyGroup>
+
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="npm --prefix &quot;html&quot; run build" />
+    <Exec Command="npm --prefix &quot;html&quot; run build&#xD;&#xA;" />
   </Target>
 
 </Project>

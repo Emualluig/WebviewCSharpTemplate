@@ -3,10 +3,7 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-# Do not include node-specific files
-html/node_modules
-html/dist/
-html/package-lock.json
+### WebviewCSharpTemplate modifications at the bottom
 
 # User-specific files
 *.rsuser
@@ -353,3 +350,13 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+
+### WebviewCSharpTemplate modifications
+
+# Do not include node-specific files
+html/node_modules
+html/dist/
+html/package-lock.json
+# Include SingleWindow publish profile
+!Properties/PublishProfiles/SingleWindows.pubxml

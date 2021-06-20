@@ -61,7 +61,7 @@ namespace WebviewCSharpTemplate.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello.
+        ///   Looks up a localized string similar to index,tab1,tab2.
         /// </summary>
         internal static string pageList {
             get {

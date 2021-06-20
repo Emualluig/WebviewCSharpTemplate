@@ -11,6 +11,10 @@
                 If the asset is a file to be included in the exe, you should inline
         -->
 
+        <!-- interop.js sets the title of the window to the title of the page -->
+        <!-- Have title before interop.js -->
+        <title>Index</title>
+
         <!-- 
             Use javascript to interop with c#, use this for example.
 
@@ -20,18 +24,13 @@
         
         -->
         <script src="script/interop.js"></script>
-
-        <!-- interop.js sets the title of the window to the title of the page -->
-        <title>Index</title>
-
-        <!-- Load in twemoji, but do not inline (Will get from src) -->
-        <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous" data-inline-ignore></script>
         
         <!-- 
             Load in bootstrap icons, but not inline
             You might want to inline this by downloading the content and having a href to the file location
             When things are inlined, they become base64 string inside the html itself, 
-            so file size can get large if inling is not properly managed 
+            so file size can get large if inling is not properly managed.
+            Inling would make loading faster however...
         -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" data-inline-ignore>
 
@@ -60,8 +59,11 @@
     </head>
     <body>
         <div class="content-wrapper">
-            <p class="welcome-message">The page has loaded! 🎉</p>
+            <p class="welcome-message" id="text">The page has loaded!</p>
             <p>Welcome to index</p>
+            <p>
+                I hope you enjoy your stay
+            </p>
             <p>
                 <ul>
                     <li>On this page you can navigate to tab1 or tab2.</li>
@@ -86,13 +88,5 @@
                 </span>
             </div>
         </div>
-        <script>
-            (function() {
-                twemoji.parse(document.body,{
-                    folder: 'svg',
-                    ext: '.svg'
-                });
-            })();
-        </script>
     </body>
 </html>

@@ -109,7 +109,8 @@ fs.readFile(resxFile, (err, xmlData) => {
 
         const builder = new xml2js.Builder();
         const xmlBuilt = builder.buildObject(parsedXML);
-        
+
+        // Write new resx
         fs.writeFileSync(resxFile, xmlBuilt);
 
         console.log("regenerated .resx");

@@ -61,7 +61,9 @@ fs.readdir(inputDir, { withFileTypes: true }, (err, result) => {
                 console.log("inlined => " + file);
                 console.log("minifying => " + file);
 
-                const minifiedContent = minify(inlinedContent, {});
+                const minifiedContent = minify(inlinedContent, {
+                    // TODO: Write minification options
+                });
 
                 fs.writeFile(outputDir + file, minifiedContent, (err) => {
                     if (err) {
