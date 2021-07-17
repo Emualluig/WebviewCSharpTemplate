@@ -8,40 +8,72 @@
         <link rel="stylesheet" href="css/style.css">
 
         <!-- All scripts get inlined except if they have the attribute data-inline-ignore -->
+
+        <!-- This script and stylesheet helps emulate a native application by limit some normal web functionalities -->
         <!-- 
-            In this script you can see: 
-                cs_navigate that call a C# function to navigate between pages
-                cs_initialize that changes the title of the window to that of the page
+            The script "less_web_func" has options to stop actions such as right clicking and the dragging of images:
+                disableRightClick() -> Disables right click
+                disableDrag() -> All elements with class no-drag become no longer draggable (aka images)
+        -->
+        <script src="script/less_web_func.js"></script>
+
+        <!-- 
+            The style sheet "less_web_func" has a class to limit the selection of text:
+                .no-select -> Stops the selection of text
+                .no-drag -> See less_web_func.js for more information
+        -->
+        <link rel="stylesheet" href="css/less_web_func.css"/>
+
+        <!-- 
+            The script "interop" has an example of the JS/C# interop:
+                cs_navigate() -> Calls a C# function to navigate between pages
+                cs_initialize() -> Changes the title of the window to that of the page
          -->
         <script src="script/interop.js"></script>
 
         
         <script>
+
+            // Wait for DOM to load before disabling drag
+            document.addEventListener("DOMContentLoaded", function(event) {
+            
+                // Call this function to disable right click (in order to better simulate a native application)
+                disableRightClick();
+
+                // Call this function to disable drag on all elements with no-drag class
+                disableDrag();
+
+            });
+
+            let sentNumber = 1;
+
             // This is an example of sending and receiving data from the C# backend
-            const updateContent = function(arg) {
+            const updateContent = function() {
                 console.log("up");
 
                 // cs_extern_send can consume any number of arguments
-                // the arguments become a string in C#
+                // the arguments become a JSON string in C#
                 // then a promise is returned, where the reponse is a JSON object
-                cs_extern_send(arg).then((rep) => {
+                cs_extern_send(sentNumber).then((rep) => {
                     document.getElementById("response").innerHTML = "args sent to c# was: " + rep.result;
                     document.getElementById("response").style.backgroundColor = "lightgreen";
                 }).catch((err) => {
                     document.getElementById("response").innerHTML = err.result;
                     document.getElementById("response").style.backgroundColor = "lightcoral";
                 });
+
+                sentNumber++;
             }
         </script>
     </head>
-    <body>
+    <body class="no-select">
         <div class="content">
             <img class="success" src="https://abs.twimg.com/emoji/v2/svg/1f389.svg" data-inline-ignore>
             <p>Page sucessfully loaded!</p>
             <fieldset class="examples">
                 <legend>Interact with C# backend</legend>
                 <div class="button">
-                    <button onclick="updateContent(1)">Click here to update content</button>
+                    <button onclick="updateContent()">Click here to update content</button>
                 </div>
                 <div class="result" id="response" style="background-color: lightcoral;">no content here yet</div>
             </fieldset>

@@ -20,5 +20,11 @@ Each time you compile your app, your html and its resources (js/css files) are i
 # Requirements
 
 * node.js
-  * the inlining and Resources.resx manipulation is done by js scripts (located at html/build-script/)
+  * the inlining and Resources.resx manipulation is done by js scripts (located in html/build-script/)
 * Visual Studio
+
+# TODO:
+
+* Options to better emulate a native application (limit text selection, limit image dragging, etc..)
+* Update build scripts to potentially use Webpack
+
