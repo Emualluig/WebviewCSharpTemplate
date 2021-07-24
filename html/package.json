@@ -1,9 +1,10 @@
 {
-  "name": "html",
+  "name": "packer",
   "version": "1.0.0",
-  "description": "inlines and minifies webpages in src so that they can be used as a resource",
+  "description": "Here goes your build code",
   "scripts": {
-    "build": "node ./build-scripts/inline-minify.js && node ./build-scripts/generateResources.js"
+    "build": "node ./build-scripts/inline-minify.js && npm run generate-resources",
+    "generate-resources": "node ./build-scripts/generateResources.js"
   },
   "author": "",
   "license": "",

@@ -61,7 +61,19 @@ fs.readdir(inputDir, { withFileTypes: true }, (err, result) => {
                 console.log("minifying => " + file);
 
                 const minifiedContent = minify(inlinedContent, {
-                    // TODO: Write minification options
+                    caseSensitive: false,
+                    collapseBooleanAttributes: true,
+                    collapseWhitespace: true,
+                    decodeEntities: true,
+                    html5: true,
+                    minifyCSS: true,
+                    minifyJS: true,
+                    removeComments: true,
+                    removeEmptyAttributes: true,
+                    removeScriptTypeAttributes: true,
+                    removeStyleLinkTypeAttributes: true,
+                    trimCustomFragments: true,
+                    useShortDoctype: true
                 });
 
                 fs.writeFile(outputDir + file, minifiedContent, (err) => {

@@ -358,5 +358,6 @@ MigrationBackup/
 html/node_modules
 html/dist/
 html/package-lock.json
-# Include SingleWindow publish profile
+# Include SingleWindow and SingleMacOS publish profile
 !Properties/PublishProfiles/SingleWindows.pubxml
+!Properties/PublishProfiles/SingleMacOS.pubxml

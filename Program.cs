@@ -49,6 +49,7 @@ namespace WebviewCSharpTemplate
 
                     // Here you can use .Bind() to create functions that js can call.
                     // args is a string such as ["arg1","arg2","arg3",...]
+                    // Don't forget to always santize all input received by these functions
 
                     // Set up function binds
                     // cs_extern_initialize(f_args) sets the title of the window to that of the page
