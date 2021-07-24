@@ -21,13 +21,13 @@ Each time you compile your app, your html and its resources (js/css files) are i
 
 Download the project
 
-navigate to html
+Open in visual studio
 
-run npm install
+Run the command `run npm install` in the folder html
 
-create dir named dist
+Create dir named dist
 
-npm run build
+Run the project
 
 # Requirements
 
