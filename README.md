@@ -23,7 +23,7 @@ Download the project
 
 Open in visual studio
 
-Run the command `run npm install` in the folder html
+Run the command `npm install` in the folder html
 
 Create dir named dist
 
