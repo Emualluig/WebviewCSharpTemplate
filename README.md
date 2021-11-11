@@ -37,6 +37,8 @@ Run the project
 
 # TODO:
 
-* Options to better emulate a native application (limit text selection, limit image dragging, etc..)
-* Update build scripts to potentially use Webpack
+ - [ ] Options to better emulate a native application (limit text selection, limit image dragging, etc..)
+ - [ ] Create Child Windows
+ - [ ] Navigate between pages without losing state
+ - [ ] Update build scripts to potentially use Webpack
 
